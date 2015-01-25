@@ -8,11 +8,11 @@
 <script type="text/javascript">
  $("document").ready(function(){
                 $("#btnLogin").bind("click",function(){
-                        window.location.href = "login.html";});
+                        window.location.href = "login";});
                 $("#btnDemo").bind("click", function(){
-                        window.location.href = "demo.html";});
+                        window.location.href = "demo";});
                 $("#btnAbout").bind("click", function(){
-                        window.location.href = "about.html";});
+                        window.location.href = "about";});
                 showSlide1();
                 });
 

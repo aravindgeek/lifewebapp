@@ -1,21 +1,19 @@
 <!doctype html>
 <html>
 <head>
-	<title> About page</title>
+	<title> Demo page</title>
 <link rel="stylesheet" type="text/css" href="css/home.css">
-<link rel="stylesheet" type="text/css" href="css/about.css">
 <script type="text/javascript" src="js/jquery-1.11.1.js" > </script>
-<script type="text/javascript" >
+<script type="text/javascript">
  $("document").ready(function(){
                 $("#btnLogin").bind("click",function(){
-                        window.location.href = "login.html";});
+                        window.location.href = "login";});
                 $("#btnDemo").bind("click", function(){
-                        window.location.href = "demo.html";});
+                        window.location.href = "demo";});
                 $("#btnAbout").bind("click", function(){
-                        window.location.href = "about.html";});
+                        window.location.href = "about";});
                 showSlide1();
                 });
-
 </script>
 </head>
 <body>
@@ -29,7 +27,7 @@
                         </ul>
         </div>
         <div id="content">
-                <p>This is lifeweb application </p>
+                <p> This is the demo page </p>
         </div>
 
 

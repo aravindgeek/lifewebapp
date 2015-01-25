@@ -8,11 +8,11 @@
 <script type="text/javascript">
    $("document").ready(function(){
                 $("#btnLogin").bind("click",function(){
-                        window.location.href = "login.html";});
+                        window.location.href = "login";});
                 $("#btnDemo").bind("click", function(){
-                        window.location.href = "demo.html";});
+                        window.location.href = "demo";});
                 $("#btnAbout").bind("click", function(){
-                        window.location.href = "about.html";});
+                        window.location.href = "about";});
                 showSlide1();
                 });
 
@@ -34,8 +34,8 @@
         <p> Password : </p><input type="text"/> <br>
         <input type="submit" id="login" value="Login"/>
         <input type="button" id="cancel" value="Cancel"/> <br>
-        <a href="new_user.html"> New User</a>
-        <a href="reset_passwd.html"> Forget Password </a>
+        <a href="newuser"> New User</a>
+        <a href="resetpwd"> Forget Password </a>
 
         </form>
         </div>

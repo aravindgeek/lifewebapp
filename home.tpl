@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<title> Welcome to Web portal for Conway's game of LIFE</title>
+	<title> Welcome to Web portal for Conway's game of LIFE by {{name}}</title>
 <link rel="stylesheet" type="text/css" href="css/home.css">
 <script type="text/javascript" src="js/jquery-1.11.1.js" > </script>
 <script type="text/javascript">
@@ -32,11 +32,11 @@ var showSlide3 = function(){
         }
         $("document").ready(function(){
                 $("#btnLogin").bind("click",function(){
-                        window.location.href = "login.html";});
+                        window.location.href = "login";});
                 $("#btnDemo").bind("click", function(){
-                        window.location.href = "demo.html";});
+                        window.location.href = "demo";});
                 $("#btnAbout").bind("click", function(){
-                        window.location.href = "about.html";});
+                        window.location.href = "about";});
                 showSlide1();
                 });
 
