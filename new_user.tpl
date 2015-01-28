@@ -29,13 +29,13 @@
                         </ul>
         </div>
         <div id="content">
-                <form action="register" method="post">
-                        <p> Your Name: </p><input type="text" id="name" /> <br>
-                        <p> Nick/User Name : </p><input type="text" id="userid" /> <br>
-                        <p>Email: </p><input type="text" id="email" /> <br>
-                        <p>Re-type:</p> <input type="text" id="email_2" /> <br>
-                        <p>Password:</p> <input type="password" id="passwd" /> <br>
-                        <p>Re-type:</p> <input type="password" id="passwd_2" /><br>
+                <form action="/newuser" method="post">
+                        <p> Your Name: </p><input type="text" name="name" /> <br>
+                        <p> Nick/User Name : </p><input type="text" name="userid" /> <br>
+                        <p>Email: </p><input type="text" name="email" /> <br>
+                        <p>Re-type:</p> <input type="text" name="email_2" /> <br>
+                        <p>Password:</p> <input type="password" name="passwd" /> <br>
+                        <p>Re-type:</p> <input type="password" name="passwd_2" /><br>
                         <input type="submit" id="btnRegister" value="Register">
                         <input type="reset" id="btnCancel" value="Cancel">
                 </form>

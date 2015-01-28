@@ -29,15 +29,16 @@
                         </ul>
         </div>
         <div id="content">
-        <form action="checklogin" method="post">
-        <p> Username : </p><input type="text"/> <br>
-        <p> Password : </p><input type="text"/> <br>
+        <form action="login" method="post">
+        <p> Username : </p><input name="username" type="text"/> <br>
+        <p> Password : </p><input name="password" type="text"/> <br>
         <input type="submit" id="login" value="Login"/>
         <input type="button" id="cancel" value="Cancel"/> <br>
         <a href="newuser"> New User</a>
         <a href="resetpwd"> Forget Password </a>
 
         </form>
+        {{!msg}}
         </div>
 
 

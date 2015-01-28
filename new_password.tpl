@@ -28,9 +28,15 @@
                         </ul>
         </div>
         <div id="content">
-                <form action="resetpwd" method="post">
-                        <p>Your registered email address </p><input type="text"
-                        name="email_id"> <br>
+                <form action="/changepwd" method="post">
+                        <p> Userid </p> <input type="text" name="userhandle"
+                        value={{handle}} readonly><br>
+                        <p> Cryptcode </p> <input type="text"
+                        name="cryptcode" value={{cc}} readonly><br>
+                        <p>New Password </p><input type="text"
+                        name="new_pwd"> <br>
+                        <p>Repeat passwod</> <input type="text"
+                        name="new_pwd2"><br>
                         <input type="submit" value="reset">
                 </form>
         </div>
