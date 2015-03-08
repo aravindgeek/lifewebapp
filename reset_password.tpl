@@ -1,40 +1,45 @@
 <!doctype html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/home.css">
-<link rel="stylesheet" type="text/css" href="css/pure-min.css">
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Russo+One' rel='stylesheet' type='text/css'>
-<script src="js/jquery-1.11.1.js" > </script>
-<script>
- $("document").ready(function(){
-                $("#btnLogin").bind("click",function(){
-                        window.location.href = "login";});
-                $("#btnDemo").bind("click", function(){
-                        window.location.href = "demo";});
-                $("#btnAbout").bind("click", function(){
-                        window.location.href = "about";});
-                showSlide1();
-                });
-
-</script>
+<link rel="stylesheet" type="text/css" href="css/home.css">
+<link rel="stylesheet" type="text/css" href="css/newuser.css">
+<link rel="stylesheet" type="text/css" href="css/pure-min.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 </head>
 <body>
 <div id="main_container">
-        <div id="header">
-                        <img id="logo" src="images/logo.gif" alt="logo"/>
-                        <p id="title"> CONWAY'S GAME OF LIFE </p>
-                        <ul id="menu">
-                                <li class="button" id="btnLogin"> LetMeIn</li>
-                                <li class="button" id="btnDemo"> Demo </li>
-                                <li class="button" id="btnAbout"> About</li>
+        <div id="header" class="pure-g">
+					<div id="logodiv"class="pure-u-1-12">
+													<img id="logo" src="images/logo.gif" alt="logo"/>
+					</div>
+					<div id="title" class="pure-u-1-3">
+													<p> CONWAY'S GAME OF LIFE </p>
+					</div>
+					<div id="menu_container"class="pure-u-1-3">
+                        <div class="pure-menu pure-menu-horizontal">
+                        <ul class="pure-menu-list" id="menu">
+                                <li class="custom-menu-item pure-menu-item" id="btnHome"> <a href="/" class="pure-menu-link"><i class="fa fa-home"> </i> &nbspHome </a></li>
+                                <li class="custom-menu-item pure-menu-item" id="btnLogin"> <a href="/login" class="pure-menu-link"><i class="fa fa-users"> </i> &nbspLogin </a></li>
+                                <li class="custom-menu-item pure-menu-item" id="btnDemo"> <a href="/demo" class="pure-menu-link"><i class="fa fa-youtube-play"> </i> &nbspDemo</a></li>
+                                <li class="custom-menu-item pure-menu-item" id="btnAbout"> <a href="/about" class="pure-menu-link"><i class="fa fa-info-circle"> </i> &nbspAbout </a></li>
                         </ul>
+                        </div>
+        </div>
         </div>
         <div id="content">
-                <form action="resetpwd" method="post">
-                        <p>Your registered email address </p><input type="text"
-                        name="email_id"> <br>
-                        <input type="submit" value="reset">
+                <br>
+                <form class="pure-form pure-form-aligned" action="resetpwd" method="post">
+                 <fieldset>
+                  <div class="pure-control-group">
+                        <label for="email_id">Your registered email address </label>
+                        <input type="text" id="email_id">
+                  </div>
+                  <div class="pure-controls">
+                        <button type="submit" id="resetPwd" class= "pure-button pure-button-primary" /> <i class="fa fa-repeat">&nbsp</i>Reset password </button>
+                  </div>
+                 </fieldset>
                 </form>
         </div>
 </div>
