@@ -1,5 +1,26 @@
 body{
-background: url(../images/bg_tile.png) repeat top left;
+background: silver
+}
+#logo{
+margin-left: 5px;
+margin-top: 3px;
+height:40px;
+}
+#title{
+  padding-left: 10px;
+  padding-right: 10px;
+left: 18px;
+top:1px;
+color:black;
+position: relative;
+vertical-align: top;
+display:inline;
+font-size: 24px;
+font-family: 'Russo One', sans-serif;
+background: rgba(0,0,0,0.05);
+}
+#header{
+background: rgba(0,0,0,0.1);
 }
 #main_container{
 margin-left: auto;
@@ -7,9 +28,9 @@ margin-right: auto;
 display:block;
 width: 1024px;
 min-height: 600px;
-background: gray;
+background: LightSkyBlue;
 }
-#links{
+#menu{
 position: relative;
 float: right;
 display:inline-block;
@@ -17,12 +38,15 @@ padding: 0px;
 margin: 0px;
 }
 .button{
+margin-top : 2px;
+color: White;
 display: inline-block;
 width: 180px;
-background: green;
+background: rgba(0,0,0,0.12);
+font-family: 'Lobster', cursive;
 text-align: center;
-font-size: 30px;
-padding: 22px 0;
+font-size: 20px;
+padding: 9px 0;
 }
 .slideshow img{
 display: none;

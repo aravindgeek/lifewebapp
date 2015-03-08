@@ -1,3 +1,16 @@
-form p{
-display: inline;
+
+#links{
+position: relative;
+top:50px;
+left: 200px;
+width:500px;
+}
+
+#content{
+position: relative;
+padding-top: 20px;
+top: 50px;
+left: 200px;
+background: rgba(255,255,255,0.4);
+width: 500px;
 }
