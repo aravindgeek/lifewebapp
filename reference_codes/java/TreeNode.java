@@ -8,20 +8,22 @@ public class TreeNode extends TreeNodeBase {
    /**
     *   Given an integer with a bitmask indicating which bits are
     *   set in the neighborhood, calculate whether this cell is
-    *   alive or dead in the next generation.  The bottom three
+    *   alive or dead in the next generation.  The bottom three  // 0, 1, 2
     *   bits are the south neighbors; bits 4..6 are the current
     *   row with bit 5 being the cell itself, and bits 8..10
     *   are the north neighbors.
     */
    TreeNode oneGen(int bitmask) {
-      if (bitmask == 0)
+      if (bitmask == 0) // No neighbor
          return create(false) ;
       int self = (bitmask >> 5) & 1 ;
       bitmask &= 0x757 ; // mask out bits we don't care about
+      // 0x757 means 111 0 101 0 111
       int neighborCount = 0 ;
       while (bitmask != 0) {
          neighborCount++ ;
          bitmask &= bitmask - 1 ; // clear least significant bit
+         // It works, how did he actually come up with that idea - ark
       }
       if (neighborCount == 3 || (neighborCount == 2 && self != 0))
          return create(true) ;

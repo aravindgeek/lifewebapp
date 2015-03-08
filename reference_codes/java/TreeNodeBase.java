@@ -24,6 +24,8 @@ public class TreeNodeBase {
                    sw.population + se.population ;
       alive = population > 0 ;
    }
+ 
+ 
    /**
     *   Factory methods to allow us to "override" the constructors.
     *   These two calls are the only places that the constructors
@@ -44,15 +46,20 @@ public class TreeNodeBase {
    /**
     *   Set a bit in this node in its relative coordinate system;
     *   returns a whole new node since our nodes are immutable.
+    // damn it so that each time a whole(1/4th) tree is created right -ark
+    
     *
     *   In the recursive call, we simply adjust the coordinate system
     *   and call down a level.
     */
    TreeNode setBit(int x, int y) {
       if (level == 0)
-         return new TreeNode(true) ;
+         return new TreeNode(true) ; // returns a leaf node
       // distance from center of this node to center of subnode is
       // one fourth the size of this node.
+      // actually at level the offset value is not important right, because we
+      // have already navigated alway down.   
+           
       int offset = 1 << (level - 2) ;
       if (x < 0)
          if (y < 0)
@@ -65,6 +72,7 @@ public class TreeNodeBase {
          else
             return create(nw, ne, sw, se.setBit(x-offset, y-offset)) ;
    }
+   
    /**
     *   If we ever really need to get a bit one at a time, we can
     *   use this subroutine.  For convenience it returns 0/1 rather
@@ -106,6 +114,7 @@ public class TreeNodeBase {
                     create(border, sw, border, border),
                     create(se, border, border, border)) ;
    }
+ 
    /*
     *   Our data; the class is immutable so all of these are final.
     */

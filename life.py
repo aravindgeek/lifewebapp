@@ -76,7 +76,7 @@ def login_authentication():
     cur.execute('select name from users where handle=? and password=?',(username,password))
     try:
         name = cur.fetchone()[0]
-        return template('<b> Welcome {{UserName}} to our site</b>', UserName=name)
+        return template('app')
     except:
         pass
     conn.close()
@@ -188,6 +188,9 @@ def aboutpage():
 def demo_page():
     return template('demo')
 
+@route('/app')
+def app_page():
+        return template('app')
 @route('/images/<name>')
 def image(name):
     return static_file(name, root='./images/')
@@ -200,6 +203,9 @@ def css(name):
 def js(name):
     return static_file(name, root='./js/')
 
+@route('/fonts/<name>')
+def font(name):
+    return static_file(name, root='./fonts')
 run(host='localhost', port =8080, debug=True, reloader=True)
 
 

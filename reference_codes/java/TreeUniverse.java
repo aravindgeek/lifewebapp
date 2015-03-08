@@ -25,12 +25,16 @@ public class TreeUniverse implements UniverseInterface {
        */
       root = root.setBit(x, y) ;
    }
+   
    /**
     *   Run a step.  First, we make sure the root is large enough to
     *   include the entire next generation by checking that all border
     *   nodes in the 4x4 square three levels down are empty.  Then we
     *   simply invoke the next generation method of the node.
     */
+    
+    // I am not able to understand what is going here ?? what damn geometrical 
+    // is this the idea man?
    public void runStep() {
       while (root.level < 3 ||
              root.nw.population != root.nw.se.se.population ||
@@ -41,6 +45,7 @@ public class TreeUniverse implements UniverseInterface {
       root = root.nextGeneration() ;
       generationCount++ ;
    }
+ 
    /**
     *   Display the current statistics about the current generation.
     *   This should include the generation count and the population.

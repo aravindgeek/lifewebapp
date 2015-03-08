@@ -35,6 +35,7 @@ public class CanonicalTreeNode extends TreeNode {
       hashMap.put(this, this) ;
       return this ;
    }
+   
    /**
     *   Our canonicalization hashset.
     */

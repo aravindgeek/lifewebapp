@@ -38,6 +38,7 @@ public class Driver {
          inputLine = inputLine.trim() ;
          for (int i=0; i<inputLine.length(); i++) {
             char c = inputLine.charAt(i) ;
+            // sets param to 1 if paramArgument is 0 
             int param = (paramArgument == 0 ? 1 : paramArgument) ;
             if (c == 'b') {
                x += param ;
@@ -69,7 +70,7 @@ public class Driver {
     */
    public static void main(String[] args) throws Exception {
       if (args.length != 1)
-         usage("Please give me an argument containing the class name to use.") ;
+         usage("Please give me an argument containing the class name to use.");
       String classToUse = args[0] ;
       System.out.println("Instantiating class " + classToUse + ".") ;
       univ = (UniverseInterface)Class.forName(classToUse).newInstance() ;
