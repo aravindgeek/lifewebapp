@@ -1,0 +1,38 @@
+#myCanvas{
+width: 1024px;
+height: 500px;
+background:rgba(255, 255, 255, 0.6);
+}
+.custom-restricted-width {
+    /* To limit the menu width to the content of the menu: */
+    display: inline-block;
+    /* Or set the width explicitly: */
+    /* width: 10em; */
+}
+
+#player-controls{
+float:bottom;
+margin-bottom: 4px;
+background : rgb(80,80,80);
+}
+#player{
+margin-top: 4px;
+margin-right: 4px;
+float: right;
+border-color:rgba(13,11,157, 0.5);
+border-width: 3px;
+border-style:solid;
+}
+#player-controls .pure-menu-link{
+color: white;
+font-family:'Lobster';
+}
+#player-controls .pure-menu-link:hover, .pure-menu-link:focus{
+background-color: green;
+}
+
+#iter_count{
+color: white;
+font-family:'Lobster';
+}
+	
