@@ -31,8 +31,35 @@ font-family:'Lobster';
 background-color: green;
 }
 
-#iter_count{
+#iter_count, #cooridanates{
 color: white;
 font-family:'Lobster';
+}
+#save-form{
+left:200px;
+background: rgba(255,255,255,0.4);
+}
+.dialog-title{
+background: rgba(30,30,200,0.4);
+padding-top:10px;
+padding-bottom:10px;
+text-align:center;
+}
+
+#openmenu
+{
+width:200px;
+left:100px;
+background: rgba(255,255,255,0.4);
+}
+
+#gallerymenu
+{
+width:200px;
+left:200px;
+background: rgba(255,255,255,0.4);
+}
+.open-life-link a{
+     color: white;  
 }
 	

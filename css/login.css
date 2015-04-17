@@ -16,6 +16,7 @@ display: block;
 background: rgba(255,255,255,0.4);
 width: 500px;
 }
+
 #login_icon{
   z-index:2;
   position:relative;

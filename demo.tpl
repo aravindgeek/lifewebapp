@@ -24,10 +24,12 @@
 		<div id="menu_container"class="pure-u-1-3">
             <div class="pure-menu pure-menu-horizontal">
                 <ul class="pure-menu-list" id="menu">
+                 <!--   <li id="debug" class="custom-menu-item pure-menu-item">Parameters</li> -->
                     <li class="custom-menu-item pure-menu-item" id="btnHome"> <a href="/" class="pure-menu-link"><i class="fa fa-home"> </i> &nbspHome </a></li>
                     <li class="custom-menu-item pure-menu-item" id="btnLogin"> <a href="/login" class="pure-menu-link"><i class="fa fa-users"> </i> &nbspLogin </a></li>
                     <li class="custom-menu-item pure-menu-item" id="btnDemo"> <a href="/demo" class="pure-menu-link"><i class="fa fa-youtube-play"> </i> &nbspDemo</a></li>
                     <li class="custom-menu-item pure-menu-item" id="btnAbout"> <a href="/about" class="pure-menu-link"><i class="fa fa-info-circle"> </i> &nbspAbout </a></li>
+                    
                 </ul>
             </div>
         </div>
@@ -36,17 +38,10 @@
     <div id="content">
         <div id = "examples" class="pure-menu custom-restricted-width">
             <span class="pure-menu-heading">Examples</span>
-            <ul class="pure-menu-list">
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Flickr</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Messenger</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sports</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Finance</a></li>
-                <span class="pure-menu-heading">Examples</span>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Flickr</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Messenger</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Sports</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">Finance</a></li>
+            <ul id="demo_menu"class="pure-menu-list">
+
             </ul>
+            
         </div>
         <div id="player">
             <canvas id="myCanvas"></canvas>
@@ -58,6 +53,7 @@
                     <li class="pure-menu-item"><a id="backward-link" class="pure-menu-link"><i class="fa fa-step-backward"> </i>Step(-1) </a></li>
                     <li class="pure-menu-item"><a id="reset-link" class="pure-menu-link"><i class="fa fa-refresh"> </i> Reset </a></li>
                     <li class="pure-menu-item"> &nbsp&nbsp&nbsp&nbsp<span id="iter_count"> iter_count : 0</span></li>                                        
+                    <li class="pure-menu-item"> &nbsp&nbsp&nbsp&nbsp<span id="cooridanates"> x:0 y:0</span></li>
                 </ul>
             </div>
         </div>

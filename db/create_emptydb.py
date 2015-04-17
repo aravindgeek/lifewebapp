@@ -5,8 +5,9 @@ cur = conn.cursor()
 cur.execute(" drop table lifes")
 cur.execute('''CREATE TABLE lifes (
     "author" TEXT NOT NULL,
-    "world" BLOB, "thumb" TEXT,
+    "world" TEXT,
     "id" TEXT NOT NULL,
+    "type" TEXT NOT NULL, 
     "likes_count" INTEGER)''')
 
 cur.execute("drop table users")

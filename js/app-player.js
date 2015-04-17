@@ -192,18 +192,15 @@
         //clears last generation from screen
         //draws the nextGeneation to screen
         var updateGrid = function(cellState) {
-            //remove older cells
+            //remove older cells from the drawing screen
             currentCells.removeChildren();
-/*            top = CENTER.x;
-            bottom = CENTER.x;
-            left = CENTER.y;
-            right = CENTER.y; */
+            
             if(time_line.length > 30)
             {
                 time_line.shift();
             }
-            //add new cells
             
+            //add new cells
             for(var i=0; i<cellState.length; i++)
             
             {
@@ -217,6 +214,7 @@
                  
                 placeLife(cellState[i]);
             }
+            //newCenter is updated in placeLife
             if (view.center.x == newCenter.x && view.center.y == newCenter.y)
             {
                 view.draw();
@@ -224,6 +222,7 @@
             else
             {
                 //alert("This is being called");
+                //this part of code doesn't work
                 RATE = 10;
                 var diffX = (newCenter.x - view.center.x)/RATE;
                 var diffY = (newCenter.y - view.center.y)/RATE;
@@ -243,19 +242,53 @@
             time_line.push(currentState);
             updateGrid(currentState);
             view.center = CENTER;
-            //console.log(CENTER)
             view.zoom = 1.0;
             view.draw()
         }
    
-        
+        function remove_cell(xcell){
+            temp = []
+            x = xcell.x; y = xcell.y;
+            for(var i=0; i<currentState.length; i++)
+            {
+                if(x != currentState[i].x || y != currentState[i].y)
+                {
+                    temp.push(currentState[i]);
+                }
+            }
+            //console.log(xcell);
+            //console.log(currentState);
+            //console.log(temp);
+            currentState = temp;
+            updateGrid(currentState);
+        }
         
         var tool = new Tool();
         tool.onMouseMove = function(event){
-            var x = Math.round((event.point.x - CENTER.x)/CELL_SIZE);
-            var y = Math.round((event.point.y - CENTER.y)/CELL_SIZE);
+            var x = Math.round((event.point.x + 20 - CENTER.x)/CELL_SIZE);
+            var y = Math.round((event.point.y + 20 - CENTER.y)/CELL_SIZE);
             $("#cooridanates").text("x: " + x + " y:" + y ); 
         };
+        tool.onMouseDown = function(event){
+            var _x = Math.round((event.point.x -10 - CENTER.x)/CELL_SIZE)+1;
+            var _y = Math.round((event.point.y -10 - CENTER.y)/CELL_SIZE)+1;
+            var new_cell = {x:_x, y:_y};
+            if(addpoint == true && exists(_x,_y)== false){
+                placeLife(new_cell);
+                currentState.push(new_cell);
+            }
+            else if(removepoint == true){
+                alert("removepoint invoked");
+                remove_cell(new_cell);
+            }
+        };
+        tool.onKeyDown = function(event) {
+            if (event.key == 'escape') {
+                addpoint = false;
+                removepoint = false;
+                $('#player').css('cursor' , 'pointer')
+            }
+        }
         /*
         view.onFrame = function(){
             if(pause_flag != true)
@@ -302,7 +335,7 @@
                 forward_count--;
                 //alert(top.toString() + " " + bottom.toString() +" "+ left.toString() + " "+ right.toString()); 
             }
-        }, 500);
+        }, 100);
         
         // main code
         draw_grid();
@@ -346,19 +379,117 @@
             updateGrid(seedStates);
             currentState = seedStates;
             nextState = [];
-            console.log(CENTER);
         });
-        // reading demo lifes from database using a AJAX request
-        $.ajax(
-            {url: "/demo-lifes?req_item=list", 
+        
+        $("#addpoint-link").click( function(){
+            addpoint = true;
+            removepoint = false;
+            $('#player').awesomeCursor('plus');
+        });
+        $("#rmpoint-link").click( function(){
+            addpoint = false;
+            removepoint = true;
+            $('#player').awesomeCursor('remove');
+        });
+        $("#updateseed-link").click( function(){
+            time_line = [];
+            iter_count = 0;
+            $("#iter_count").text("iter_count : " + iter_count.toString());
+            pause_flag = true;
+            seedStates = currentState;
+            time_line.push(seedStates);
+            updateGrid(seedStates);
+            nextState = [];
+        });
+        $("#logout-link").click( function(){
+              window.location="/logout";
+        });
+        
+        $("#newlife-link").click( function(){
+            init_seed([]);
+            time_line = [];
+            iter_count = 0;
+            $("#iter_count").text("iter_count : " + iter_count.toString());
+        });
+        
+        $("#openmenu").css('display','none');
+        $("#openlife-link").click( function(){
+            $.ajax(
+                {url: "/getlifes?req_item=none&is_list=true", 
+                async: false,
+                success: function(result){
+                    $("#open_menu_list").html(result);
+                 }});
+                 
+                 $(".open-life-link").click( function(){
+                    $.ajax(
+                        {url: "/getlifes?req_item=" + $(this).text() +"&is_list=false", 
+                        success : function(result){
+                            var intial_seed = [];
+                            var intial_points = ((JSON.parse(result)).points);
+                            for( var i =0; i < intial_points.length;i++){
+                                 intial_seed.push(new Point(intial_points[i]));
+                            }
+                            //alert(intial_seed);
+                            init_seed(intial_seed);
+                        }});
+                $("#openmenu").css('display','none');
+                });
+                $("#openmenu").css({'display':'block','z-index':'4','position':'absolute'});
+        });
+        $("#save-form").css('display','none');
+        
+        $("#savelife-link").click( function(){
+            $("#save-form").css({'display':'block','z-index':'3','position':'absolute'});
+        });
+        
+        $("#sf-cancel").click( function(){
+            $("#save-form").css('display','none');
+        });
+        
+        $("#sf-save").click( function(){
+            _seedStates = [];
+             for( var i =0; i < seedStates.length;i++){
+                 _seedStates.push([seedStates[i].x, seedStates[i].y])
+            }
+            _url = "/savelife?lifename=" + $("#sf-lifename").val() +
+                "&visibility=" + $("#sf-visibility").val() +
+                "&cells=" + '{"points":' + JSON.stringify(_seedStates) + "}" + 
+                "&is_update="+'false';
+            console.log(_url);
+           $.ajax({url:_url, 
+                    success : function(result){
+                    //alert(result);
+                        if(result=='OK')
+                        {
+                            alert("Life saved succesfully");
+                            $("#save-form").css('display','none');
+                        }
+                        else if(result=='EXISTS')
+                        {
+                            alert("Life already Exists");
+                        }
+                        else
+                        {
+                            alert("Saving Life Failed");
+                            $("#save-form").css('display','none');
+                        }
+                    }
+                    });
+        });
+        
+        $("#gallerymenu").css('display','none');
+        $("#gallery-link").click(function(){
+            $.ajax(
+            {url: "/getgallerylifes?req_item=none&is_list=true", 
             async: false,
             success: function(result){
-                $("#demo_menu").html(result);
-        }});
-        
-        $(".demo-life-link").click( function(){
+                $("#gallery_menu_list").html(result);
+             }});
+             
+             $(".gallery-life-link").click( function(){
                 $.ajax(
-                    {url: "/demo-lifes?req_item=" + $(this).text(), 
+                    {url: "/getgallerylifes?req_item=" + $(this).text() +"&is_list=false", 
                     success : function(result){
                         var intial_seed = [];
                         var intial_points = ((JSON.parse(result)).points);
@@ -368,8 +499,35 @@
                         //alert(intial_seed);
                         init_seed(intial_seed);
                     }});
+            $("#gallerymenu").css('display','none');
+            });
+            $("#gallerymenu").css({'display':'block','z-index':'4','position':'absolute'});
         });
         
+        $("#openlife-link").click( function(){
+            $.ajax(
+            {url: "/getlifes?req_item=none&is_list=true", 
+            async: false,
+            success: function(result){
+                $("#open_menu_list").html(result);
+             }});
+             
+             $(".open-life-link").click( function(){
+                $.ajax(
+                    {url: "/getlifes?req_item=" + $(this).text(), 
+                    success : function(result){
+                        var intial_seed = [];
+                        var intial_points = ((JSON.parse(result)).points);
+                        for( var i =0; i < intial_points.length;i++){
+                             intial_seed.push(new Point(intial_points[i]));
+                        }
+                        //alert(intial_seed);
+                        init_seed(intial_seed);
+                        $("#gallerymenu").css('display','none');
+                    }});
+            });
+            
+        });
 
 
     }
