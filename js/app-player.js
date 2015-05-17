@@ -278,7 +278,7 @@
                 currentState.push(new_cell);
             }
             else if(removepoint == true){
-                alert("removepoint invoked");
+                //alert("removepoint invoked");
                 remove_cell(new_cell);
             }
         };
@@ -410,6 +410,8 @@
             time_line = [];
             iter_count = 0;
             $("#iter_count").text("iter_count : " + iter_count.toString());
+            console.log(currentState);
+            is_update = false;
         });
         
         $("#openmenu").css('display','none');
@@ -430,6 +432,7 @@
                             for( var i =0; i < intial_points.length;i++){
                                  intial_seed.push(new Point(intial_points[i]));
                             }
+                            is_update = true;
                             //alert(intial_seed);
                             init_seed(intial_seed);
                         }});
@@ -455,8 +458,8 @@
             _url = "/savelife?lifename=" + $("#sf-lifename").val() +
                 "&visibility=" + $("#sf-visibility").val() +
                 "&cells=" + '{"points":' + JSON.stringify(_seedStates) + "}" + 
-                "&is_update="+'false';
-            console.log(_url);
+                "&is_update="+is_update;
+           console.log(_url);
            $.ajax({url:_url, 
                     success : function(result){
                     //alert(result);
@@ -502,31 +505,6 @@
             $("#gallerymenu").css('display','none');
             });
             $("#gallerymenu").css({'display':'block','z-index':'4','position':'absolute'});
-        });
-        
-        $("#openlife-link").click( function(){
-            $.ajax(
-            {url: "/getlifes?req_item=none&is_list=true", 
-            async: false,
-            success: function(result){
-                $("#open_menu_list").html(result);
-             }});
-             
-             $(".open-life-link").click( function(){
-                $.ajax(
-                    {url: "/getlifes?req_item=" + $(this).text(), 
-                    success : function(result){
-                        var intial_seed = [];
-                        var intial_points = ((JSON.parse(result)).points);
-                        for( var i =0; i < intial_points.length;i++){
-                             intial_seed.push(new Point(intial_points[i]));
-                        }
-                        //alert(intial_seed);
-                        init_seed(intial_seed);
-                        $("#gallerymenu").css('display','none');
-                    }});
-            });
-            
         });
 
 

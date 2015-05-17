@@ -116,6 +116,7 @@ def newuser():
 
 @route('/newuser',method='POST')
 def addentrytodb():
+    pdb.set_trace()
     name = request.forms.get('name')
     handle = request.forms.get('userid')
     email = request.forms.get('email')
@@ -308,12 +309,14 @@ def savelife():
             return "SAVE FAILED"
     elif is_update == 'true':
         cur.execute('select likes_count from lifes where id = ? and author=?',(lifename,user_name))
-        likecount = cur.fetchone[0]
+        likecount = cur.fetchone()[0]
         try:
             cur.execute('update lifes set world = ? where id = ? and author=?',(world,lifename,user_name))
             conn.commit()
             return "OK"
         except Exception as e:
+            cur.execute('insert into lifes values(?,?,?,?,?)',(user_name, world, lifename, _type, 0))
+            conn.commit()
             print(e)
             return "SAVE FAILED"
     conn.close()
